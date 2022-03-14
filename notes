@@ -1,0 +1,146 @@
+For sections we skip, have a section at the end with mini-lectures.
+
+6.1 - Exponential Functions
+
+  Table of Values
+    java tables store in 2d array, check if same
+  
+  Range PARTIALLY DONE (need help)
+    If r > 1, then range = a to infinity
+    If r < 1, then range = a to 0  
+  Domain
+    Negative infinity to infinity
+
+generateGrowth()
+generateDecay()
+generateLinear()
+generateHumanGrowthEq()
+generateHumanDecayEq()
+
+6.2 - Exponential growth/decay
+  Determine growth/decay - done
+  % Rate of Change - DONE
+
+6.3 Comparing Linear and Exponential Functions - almost done; need a way to check the user's input for what the function actually is (values of a and r)
+
+  For decay functions, use 1/r for reasonable values
+  For growth, if we want something like 1.13, use r + random decimal
+
+6.4 Solving Exp. Equations - done, can go back and add number diversification or more formats
+
+6.5 Geometric Sequences
+
+  Use previous table setup
+
+Chapter 8
+
+8.1 
+  Skip
+
+8.2 Measuring and Constructing Segments
+  Find AC
+    Draw a line segment, points on it labelled A,B,C
+      between A B, between B C, have variables x and y, set these variables equal to random integers
+
+8.3 Midpoint/Distance Formulas
+  Follow the formula using random variables
+
+8.4 Perimeter/Area
+  skip
+
+8.5 Measuring and Contructing Angles
+  Random A, with a bisecting angle creating the B, C angles, set B, C, equal to an expression in terms of x.
+
+8.6 Describing Pairs of Angles
+  Complements: Random angle from 1-90, just subtract from 90
+  Supplements: same idea
+
+9.1
+  skip
+
+9.2 Inductive and Deductive Reasoning
+  skip
+
+9.3 Postulates and Diagrams
+  Hard to do, redirect user to website that can explain
+  Important part is postulates 
+
+9.4 Proving Statements about Segments and Angles
+  Proofs - impossible??
+
+9.5 Geometric Proofs
+  ^^
+
+10.1 Pairs of Lines and Angles
+  Multiple Choice - provide image, no need for scale
+
+10.2 Parallel Lines and Transversals
+  Predrawn diagram not to scale, with value in certain areas and expression in other - refer to chapter review
+    Perhaps some preset diagrams, else diagrams will be too far off
+
+10.3 Proofs with Parallel lines - refer to chapter review
+  Predrawn diagram, variable angles
+
+10.4 Proofs with Perpendicular Lines
+  skip
+
+10.5 Using Parallel and Perpendicular Lines
+  Have a box for answer, calculate the distance behind the scenes
+  Find distance from a point off of line TO the line
+  Distance between two parallel lines
+
+Chapter 11 - According to Enriquez, only going over rotating about the origin
+
+11.1 Translations
+  No diagram, randomize coords and vectors
+  Input: 2 boxes with parentheses around them, determine # of boxes based on variable 2-4 (how many points)
+
+11.2 Reflections
+  No diagram, just input boxes
+  Var 1-3, determine if flip over x, y, or y=x
+
+11.3 Rotations
+  No need for diagrams
+  # 1-3, 1 = 90 degrees, 2 = 180 degrees, etc
+
+11.4 Congruence and Transformations
+  Skip - tell user to refer elsewhere
+
+Chapter 12 - (12.7 optional)
+  12.1 Angles of Triangles
+    Have diagrams not drawn to scale, have x y z
+    Make sure to check and make sure the angles make sense for the predrawn triangles
+
+  12.2 Congruent Polygons
+    skip
+
+  12.3 Proving Triangle Congruence
+    skip - no way to randomize or collect input
+
+  12.4 Equilateral and Isosceles Triangles
+    skip 
+
+  12.5-12.6
+    skip - no way to randomize all the triangles 
+
+
+
+SKIPPED CHAPTERS
+7.1 - Measure of Center and Variation
+8.1 - Points, Lines, and Planes
+8.4 - Perimeter/Area
+9.1 - Conditional Statements
+9.2 - Inductive and Deductive Reasoning
+9.3 - Postulates and Diagrams
+9.4 Proving Statements about Segments and Angles
+9.5 - Geometric Proofs
+10.4 - Proofs with Perpendicular Lines
+12.2 - Congruent Polygons
+12.3 - Proving Triangle Congruence by SAS
+12.4 - Equilateral and Isoceles Triangles
+12.5 - Proving Triangle Congruence by SSS
+12.6 - Proving Triangle Congruence by ASA
+      
+
+
+
