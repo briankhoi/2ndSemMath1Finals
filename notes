@@ -2,20 +2,15 @@ For sections we skip, have a section at the end with mini-lectures.
 
 6.1 - Exponential Functions
 
-  Table of Values
+  Table of Values - see 6.3
     java tables store in 2d array, check if same
-  
-  Range PARTIALLY DONE (need help)
+
+  Range and Domain - Temp done
+  Range
     If r > 1, then range = a to infinity
     If r < 1, then range = a to 0  
   Domain
     Negative infinity to infinity
-
-generateGrowth()
-generateDecay()
-generateLinear()
-generateHumanGrowthEq()
-generateHumanDecayEq()
 
 6.2 - Exponential growth/decay
   Determine growth/decay - done

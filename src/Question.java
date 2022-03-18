@@ -1,4 +1,5 @@
 import org.apache.commons.math3.fraction.FractionFormat;
+import org.apache.commons.math3.fraction.Fraction;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -67,12 +68,13 @@ public class Question {
     }
 
 
-    public boolean checkAnswer() {
-      try {
-        return (getAnswer() == Double.parseDouble(DFormatter.format(FFormatter.parse(getTextField().getText()))));
-      }
-      catch (Exception e) {
-        throw new ArithmeticException("Please enter a valid fraction or number rounded to three decimal places. If an error has occurred, please email nguyenbriankhoi3238@students.esuhsd.org to report this bug and try again later.");
+    public boolean checkAnswer() { //temp fix try catch for fraction and change to fraction only
+      if (this.textField.getText().equals("")) {
+        return false;
+      } else {
+        Fraction f = FFormatter.parse(getTextField().getText());
+        double value = Math.round(f.getNumerator() / f.getDenominator() * 1000) / 1000.0;
+        return this.answer == value;
       }
     }
     

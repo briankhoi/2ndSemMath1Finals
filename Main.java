@@ -14,7 +14,7 @@ public class Main extends JFrame implements ActionListener {
   private JPanel disclaimerPanel = new JPanel(); //panel with the disclaimer message of all the skipped chapters
   private static JPanel testPanel = new JPanel(); //panel with the questions
   private JTextField textField;
-  private static JLabel disclaimerMessage = new JLabel("<html>test<br>test1</html>");
+  private static JLabel disclaimerMessage = new JLabel("<html>This practice app aims to cover the second semester of Math 1 (Chapters 6-12).<br>Due to coding limitations, unfortunately the majority of content in Chapters 9 and 12 was skipped.<br>Additionally, Chapter 7 was skipped due to many teachers skipping the chapter in their curriculum.<br> We apologize for the inconvenience and hope that despite the flaws, this program will be helpful in you passing the<br>Math 1 2nd Semester Finals.</html>");
   private static JButton disclaimer = new JButton("READ ME");
   private static JButton start = new JButton("Start");
   private static JButton button = new JButton("Submit");
@@ -22,6 +22,7 @@ public class Main extends JFrame implements ActionListener {
   private static ArrayList<LinearEq> obj = new ArrayList<>();
   private CardLayout cardSystem;
   private JPanel cardPanel;
+  private static ArrayList<Chapter8>testing = new ArrayList<>();
 
   //TO-DO: MAKE GET METHODS FOR THE STATIC VARIABLES
   
@@ -52,8 +53,8 @@ public class Main extends JFrame implements ActionListener {
 
     //modifying the disclaimer/skipped chapter screen
     disclaimerPanel.setLayout(new BoxLayout(disclaimerPanel, BoxLayout.Y_AXIS));
-    disclaimerPanel.add(back);
     disclaimerPanel.add(disclaimerMessage);
+    disclaimerPanel.add(back);
     
     button.addActionListener(this);
 
@@ -119,18 +120,39 @@ public class Main extends JFrame implements ActionListener {
     Main frame = new Main();
 
     
-      for (int i = 0; i < 3; i++) {
+      for (int i = 0; i < 1; i++) {
         LinearEq current = new LinearEq();
           obj.add(current);
           current.getLabel().setText(current.generateProblem1());
           current.getLabel().setPreferredSize(new Dimension(260,40));
-          current.getTextField().setText("test");
+          current.getTextField().setText("Enter your answer here.");
           current.getTextField().setPreferredSize(new Dimension(250,60));
           testPanel.add(current.getLabel());
           testPanel.add(current.getTextField());
           
           System.out.println(i);
         }
+
+      for (int i = 0; i < 3; i++) {
+        Chapter8 test2 = new Chapter8();
+        testing.add(test2);
+        int randomInt = 4;
+        //int randomInt = (int) (Math.random() * 4 + 1);
+        if (randomInt == 1) {
+          test2.getLabel().setText(test2.generateMidpoint());
+        } else if (randomInt == 2) {
+          test2.getLabel().setText(test2.generateDistanceFormula());
+        } else if (randomInt == 3) {
+          test2.getLabel().setText(test2.generateComSupAngles());
+        } else if (randomInt == 4) {
+          test2.getLabel().setText(test2.generateLineSegment());
+        }
+        test2.getLabel().setPreferredSize(new Dimension(260,40));
+        test2.getTextField().setText("Enter your answer here.");
+        test2.getTextField().setPreferredSize(new Dimension(250,60));
+        testPanel.add(test2.getLabel());
+        testPanel.add(test2.getTextField());
+      }
         testPanel.add(button);
         frame.pack();
         testPanel.revalidate();
