@@ -13,7 +13,7 @@ public class Chapter8 extends Question {
   private ImageIcon varDiagramObtuse = new ImageIcon("images/varDiagramObtuse.png");
   private ImageIcon varDiagramAcute = new ImageIcon("images/varDiagramAcute.png");
   //private ImageIcon lineSegment = new ImageIcon("images/lineSegment.png");
-  BufferedImage lineSegment = ImageIO.read(new File("images/lineSegment.png"));
+  //BufferedImage lineSegment = ImageIO.read(new File("images/lineSegment.png"));
   private int determiner;
   
   Chapter8() {
@@ -53,7 +53,7 @@ public class Chapter8 extends Question {
   }*/
   
   public String generateLineSegment() { 
-    JLabel picLabel = new JLabel(new ImageIcon(lineSegment));
+    //JLabel picLabel = new JLabel(new ImageIcon(lineSegment));
 //add(picLabel);
     if (this.determiner == 1) { 
       setAnswer(this.x2 - this.y1);
@@ -65,7 +65,8 @@ public class Chapter8 extends Question {
      // return "<html>Given the line segment AC with point B in the middle,<br>what is the value of AC if AB is equal to " + this.x2 + " and BC is equal to " + this.y1 + " ?<br><img src=\""
        //   + Chapter8.class.getResource("images/lineSegment.png")
          // + "\"></html>";
-      return new ImageIcon(lineSegment);
+      //return new ImageIcon(lineSegment);
+      return "";
     }
   }
 
