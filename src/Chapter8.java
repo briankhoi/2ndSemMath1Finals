@@ -3,10 +3,10 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.*;
 
-public class Chapter8 extends Question {
+public class Chapter8 extends Question { //probably inefficient to initalize all the variables since only one equation/method is being used per object 
   private double x1;
   private double y1;
-  private double x2;  //use this.x for methods and for other variables
+  private double x2;  
   private double y2;
   private double degrees;
   private String coordinatePoint;
@@ -25,32 +25,24 @@ public class Chapter8 extends Question {
     this.degrees = (int) (Math.random() * 85 + 2);
     this.coordinatePoint = "(" + this.x1 +", " + this.y1 + ") and (" + this.x2 + ", " + this.y2 + ")";
     this.determiner = (int) (Math.random() * 2 + 1);
+    this.problemGen();
   }
 
-/*get methods but might be unnecessary due to not being used
-  public double getX1() {
-    return this.x1;
-  }
-
-  public double getY1() {
-    return this.y1;
-  }
   
-  public double getX2() {
-    return this.x2;
+  public void problemGen() {
+    int problem = (int) (Math.random() * 5 + 1);
+    if (problem == 1) {
+      this.setLabel(generateLineSegment());
+    } else if (problem == 2) {
+      this.setLabel(generateComSupAngles());
+      } else if (problem == 3) {
+      this.setLabel(generateMidpoint());
+      } else if (problem == 4) {
+      this.setLabel(generateDistanceFormula());
+      } else {
+      this.setLabel(generateVariableAngles());
+      }
   }
-
-  public double getY2() {
-    return this.y2;
-  }
-
-  public double getDegrees() {
-    return this.degrees;
-  }
-
-  public String getCoordinatePoint() {
-    return this.coordinatePoint;
-  }*/
   
   public String generateLineSegment() { 
     //JLabel picLabel = new JLabel(new ImageIcon(lineSegment));
@@ -93,7 +85,7 @@ public class Chapter8 extends Question {
   public String generateVariableAngles() {
     if (this.determiner == 1) {
       getLabel().setIcon(this.varDiagramObtuse);
-      return "";
+      return ""; //TO-DO
     } else {
       getLabel().setIcon(this.varDiagramAcute);
       return "";

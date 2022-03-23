@@ -26,12 +26,12 @@ public class Question extends JPanel {
       this.textField = new JTextField();
       this.label = new JLabel();
       
-      this.textField.setPreferredSize(new Dimension(250,60));
+      this.textField.setPreferredSize(new Dimension(120,60));
       this.textField.setText("Enter your answer here");
-      this.label.setPreferredSize(new Dimension(260,40));
+      this.label.setPreferredSize(new Dimension(400,180));
 
-      this.panel.add(this.textField);
       this.panel.add(this.label);
+      this.panel.add(this.textField);
 
       this.panel.setVisible(true);
         //makes it so that when the user clicks on a textfield, the text inside the textfield disappears
@@ -65,6 +65,10 @@ public class Question extends JPanel {
     }
 
     //mutator (set) methods for private variables
+    public void setLabel(String str) {
+      this.label.setText(str);
+    }
+    
     public void setAnswer(double num) {
       this.answer = num;
     }

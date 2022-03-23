@@ -14,7 +14,7 @@ public class Chapter6 extends Question {
     }
   }
 
-
+ 
 //Chapter 6.1
 
   //Range and domain
@@ -47,11 +47,11 @@ public class Chapter6 extends Question {
     int xM = (int)(Math.random() * 11 - 5);
     int incDec = (int)(Math.random() * 2 + 1);
     if(incDec == 1){
-      setAnswer(getIncExpValue(xM) + getIncExpValue(xN));
-      return "Add the values f(" + xM + ") and f(" + xN + ") of y = " + generateIncExpEq() + ".";
+      setAnswer(getHumanIncExpValue(xM) + getHumanIncExpValue(xN));
+      return "Add the values f(" + xM + ") and f(" + xN + ") of " + generateHumanIncExpEq() + ".";
       } else {
       setAnswer(getDecExpValue(xM) + getDecExpValue(xN));
-      return "Add the values f(" + xM + ") and f(" + xN + ") of y = " + generateDecExpEq() + ".";
+      return "Add the values f(" + xM + ") and f(" + xN + ") of " + generateDecExpEq() + ".";
       }
     
     }
@@ -81,13 +81,18 @@ public class Chapter6 extends Question {
 //Chapter 6.3 (tables)
   //generates a human friendly r value exponential equation
   public String generateIncExpEq() {
-    return "y = " + this.a + "^(" + this.r + ")x " + this.constant;
+    return "f(x) = " + this.a + "^(" + this.r + "x) " + this.constant;
+  }
+
+  public String generateHumanIncExpEq() {
+    return "f(x) = " + (this.a - 5) + "^(" + (this.r - 2) + "x) " + this.constant;
   }
 
   //generates a decimal r value exponential equation
   public String generateDecExpEq() {
-    return "y = " + this.a + "^(" + (1 + this.exDecimal) + ")x " + this.constant;
+    return "f(x) = " + this.a + "^(" + (1 + this.exDecimal) + "x) " + this.constant;
   }
+
   //generates the value of the exponential function y = a^rx at x = n
   public double getIncExpValue(int n){
     return (double)(this.a * (double)Math.pow(this.r, n));
@@ -110,21 +115,23 @@ public class Chapter6 extends Question {
     int m = (int)(Math.random() * 10 + 1);
     int n = (int)(Math.random() * 5 + 1);
     int c = (int)(Math.random() * 3 + 1);
+    String prompt = "Solve for x. ";
       if(formatDeterminer == 1){
         setAnswer((b / m-1));
-        return this.a + "^x" + " = " + this.a + "^(" +  m + "x + " + b + ")";
+        return prompt + this.a + "^x" + " = " + this.a + "^(" +  m + "x + " + b + ")";
       }
       else if(formatDeterminer == 2){
         setAnswer((-n-b)/m);
-        return this.a + "^" + -n + " = " + this.a + "^(" +  m + "x + " + b + ")";
+        return prompt + this.a + "^" + -n + " = " + this.a + "^(" +  m + "x + " + b + ")";
       }
       else if(formatDeterminer == 3){
         setAnswer((double)((-b-c)/m)); 
-        return "1/("+ Math.pow(this.a, c) + " = " + this.a + "^(" +  m + "x + " + b + ")";
+        return prompt + "1/"+ Math.pow(this.a, c) + " = " + this.a + "^(" +  m + "x + " + b + ")";
       }
     return "";
     }
+  //Chapter 6.5 Geometri Sequences
+  public int getGeoValue(int n){
+    return a *(int) (Math.pow(r,n));
+  }
 }
-
-   
-  //Chapter 6.5 Geometric Sequences

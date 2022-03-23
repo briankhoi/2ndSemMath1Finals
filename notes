@@ -4,6 +4,7 @@ For sections we skip, have a section at the end with mini-lectures.
 
   Table of Values - see 6.3
     java tables store in 2d array, check if same
+  done temporarily, but possible false positives if they add two wrong numbers but come to the same answer
 
   Range and Domain - Temp done
   Range
