@@ -11,25 +11,46 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class App extends JFrame implements ActionListener {
-  private JPanel defaultPanel = new JPanel(); //panel the user sees when they first launch the program
-  private JPanel disclaimerPanel = new JPanel(); //panel with the disclaimer message of all the skipped chapters
-  private static JPanel testPanel = new JPanel(); //panel with the questions
+  private JPanel defaultPanel; //panel the user sees when they first launch the program
+  private JPanel disclaimerPanel; //panel with the disclaimer message of all the skipped chapters
+  private JPanel startPanel; //panel with the questions
+  private JPanel QPanel2;
+  private JPanel QPanel3;
+  private JPanel QPanel4;
+  private JPanel QPanel5;
+  private JPanel buttonPanel;
   private JTextField textField;
-  private static JLabel disclaimerMessage = new JLabel("<html>This practice app aims to cover the second semester of Math 1 (Chapters 6-12).<br>Due to coding limitations, unfortunately the majority of content in Chapters 9 and 12 was skipped.<br>Additionally, Chapter 7 was skipped due to many teachers skipping the chapter in their curriculum.<br> We apologize for the inconvenience and hope that despite the flaws, this program will be helpful in you passing the<br>Math 1 2nd Semester Finals.</html>");
-  private static JButton disclaimer = new JButton("READ ME");
-  private static JButton start = new JButton("Start");
-  private static JButton button = new JButton("Submit");
-  private static JButton back = new JButton("Back");
-  private static ArrayList<LinearEq> obj = new ArrayList<>();
+  private JLabel disclaimerMessage;
+  private JButton disclaimer;
+  private JButton start;
+  private JButton button;
+  private JButton back;
+  private JButton next;
+  private JButton home;
   private CardLayout cardSystem;
   private JPanel cardPanel;
-  private static ArrayList<Chapter8>testing = new ArrayList<>();
-  private ArrayList<Question>Questions = new ArrayList<>();
-
-  //TO-DO: MAKE GET METHODS FOR THE STATIC VARIABLES
-  
+  private ArrayList<Question>Questions;
+  private int currentCard;
   
   App() {
+    defaultPanel = new JPanel();
+    disclaimerPanel = new JPanel();
+    startPanel = new JPanel();
+    QPanel2 = new JPanel();
+    QPanel3 = new JPanel();
+    QPanel4 = new JPanel();
+    QPanel5 = new JPanel();
+    buttonPanel = new JPanel();
+    Questions = new ArrayList<>();
+    disclaimer = new JButton("READ ME");
+    start = new JButton("Start");
+    button = new JButton("Submit");
+    home = new JButton("Home");
+    back = new JButton("Back");
+    next = new JButton("Next");
+    disclaimerMessage = new JLabel("<html>This practice app aims to cover the second semester of Math 1 (Chapters 6-12).<br>Due to coding limitations, unfortunately the majority of content in Chapters 9 and 12 was skipped.<br>Additionally, Chapter 7 was skipped due to many teachers skipping the chapter in their curriculum.<br> We apologize for the inconvenience and hope that despite the flaws, this program will be helpful in you passing the<br>Math 1 2nd Semester Finals.</html>");
+    currentCard = 1;
+    
     //card layout system which helps navigate between pages
     cardSystem = new CardLayout();
     cardPanel = new JPanel();
@@ -44,20 +65,25 @@ public class App extends JFrame implements ActionListener {
     //modifying the start screen
     getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
     defaultPanel.add(disclaimer);
-    defaultPanel.add(start);
+    defaultPanel.add(start, 0);
     defaultPanel.setVisible(true);
     pack();
 
     //modifying the question screen
-    testPanel.setLayout(new BoxLayout(testPanel, BoxLayout.Y_AXIS));
-
-    testPanel.add(back);
-    testPanel.add(button);
-
+    startPanel.setLayout(new BoxLayout(startPanel, BoxLayout.Y_AXIS));
+    
+    startPanel.add(home);
+    startPanel.add(buttonPanel);
+    QPanel2.add(buttonPanel);
+    QPanel3.add(buttonPanel);
+    QPanel4.add(buttonPanel);
+    QPanel5.add(buttonPanel);
+    buttonPanel.add(next);
+    buttonPanel.add(back);
     //modifying the disclaimer/skipped chapter screen
     disclaimerPanel.setLayout(new BoxLayout(disclaimerPanel, BoxLayout.Y_AXIS));
     disclaimerPanel.add(disclaimerMessage);
-    disclaimerPanel.add(back);
+    disclaimerPanel.add(home);
     
     button.addActionListener(
       new ActionListener() {
@@ -73,7 +99,7 @@ public class App extends JFrame implements ActionListener {
     disclaimer.addActionListener(
       new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-          cardSystem.show(cardPanel, "" + 2);
+          cardSystem.show(cardPanel, "b");
           System.out.println("pack successful");
           }
         }
@@ -85,31 +111,58 @@ public class App extends JFrame implements ActionListener {
         public void actionPerformed(ActionEvent e) {
           System.out.println("working start");
           defaultPanel.setVisible(false);
-          testPanel.setVisible(true);
+          startPanel.setVisible(true);
           for (int i = 0; i < 3; i++) {
-            generateChapter6();
+            generateChapter8();
           }
           pack();
           }
         }
     );
 
-    //executes when back button is pressed
-    back.addActionListener(
+    //executes when home button is pressed
+    home.addActionListener(
       new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-          System.out.println("working back");
+          System.out.println("working home");
           disclaimerPanel.setVisible(false);
-          testPanel.setVisible(false);
+          startPanel.setVisible(false);
           defaultPanel.setVisible(true);
           pack();
           }
         }
     );
 
-    cardPanel.add(defaultPanel, "1");
-    cardPanel.add(disclaimerPanel, "2");
-    cardPanel.add(testPanel, "3");
+    next.addActionListener( //fix for if page is maxed out
+      new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+          if (currentCard < 5) {
+            currentCard += 1;
+            cardSystem.show(cardPanel, "" + (currentCard));
+          }
+        }
+      }
+    );
+
+    back.addActionListener( //fix for if page is maxed out
+      new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+          if (currentCard > 1) {
+            currentCard -= 1;
+            cardSystem.show(cardPanel, "" + (currentCard));
+          }
+        }
+      }
+    );
+    
+
+    cardPanel.add(defaultPanel, "a");
+    cardPanel.add(disclaimerPanel, "b");
+    cardPanel.add(startPanel, "1");
+    cardPanel.add(QPanel2, "2");
+    cardPanel.add(QPanel3, "3");
+    cardPanel.add(QPanel4, "4");
+    cardPanel.add(QPanel5, "5");
     getContentPane().add(cardPanel, BorderLayout.NORTH);
     this.add(cardPanel);
     
@@ -118,30 +171,26 @@ public class App extends JFrame implements ActionListener {
     //current.getTextField().addFocusListener(this);
   }
 
-  //executes when the submit button is called?
   public void actionPerformed(ActionEvent e) {
-    for (int i = 0; i < obj.size(); i++) {
-      System.out.println(obj.get(i).checkAnswer());
-    }       
+    System.out.println("");
   }
 
   public void generateChapter1() {
     LinearEq current = new LinearEq();
-    obj.add(current);
-    testPanel.add(current.getPanel());
+    startPanel.add(current.getPanel());
     Questions.add(current);
   }
 
   public void generateChapter8() {
     Chapter8 current = new Chapter8();
-    testPanel.add(current.getPanel());
+    startPanel.add(current.getPanel());
     Questions.add(current);
     System.out.println("ch8");
   }
 
   public void generateChapter6() {
     expTable current = new expTable();
-    testPanel.add(current.getPanel());
+    startPanel.add(current.getPanel());
     Questions.add(current);
     System.out.println("ch6");
   }

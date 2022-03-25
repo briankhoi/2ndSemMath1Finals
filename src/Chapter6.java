@@ -88,6 +88,9 @@ public class Chapter6 extends Question {
     return "f(x) = " + (this.a - 5) + "^(" + (this.r - 2) + "x) " + this.constant;
   }
 
+  public double getHumanIncExpValue(int n) {
+    return (double)((this.a - 5) * (double)Math.pow(this.r - 2, n));
+  }
   //generates a decimal r value exponential equation
   public String generateDecExpEq() {
     return "f(x) = " + this.a + "^(" + (1 + this.exDecimal) + "x) " + this.constant;

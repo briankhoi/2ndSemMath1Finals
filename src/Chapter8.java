@@ -12,8 +12,8 @@ public class Chapter8 extends Question { //probably inefficient to initalize all
   private String coordinatePoint;
   private ImageIcon varDiagramObtuse = new ImageIcon("images/varDiagramObtuse.png");
   private ImageIcon varDiagramAcute = new ImageIcon("images/varDiagramAcute.png");
-  //private ImageIcon lineSegment = new ImageIcon("images/lineSegment.png");
-  //BufferedImage lineSegment = ImageIO.read(new File("images/lineSegment.png"));
+  private ImageIcon lineSegment = new ImageIcon("images/lineSegment.png");
+
   private int determiner;
   
   Chapter8() {
@@ -47,18 +47,13 @@ public class Chapter8 extends Question { //probably inefficient to initalize all
   public String generateLineSegment() { 
     //JLabel picLabel = new JLabel(new ImageIcon(lineSegment));
 //add(picLabel);
+    getLabel().setIcon(this.lineSegment);
     if (this.determiner == 1) { 
       setAnswer(this.x2 - this.y1);
-      return "<html>Given the line segment AC with point B in the middle, what is the value of BC if AC is equal <br> to " + this.x2 + " and AB is equal to " + this.y1 + " ?<br><img src=\""
-          + Chapter8.class.getResource("images/lineSegment.png")
-          + "\"></html>";
+      return "<html>Given the line segment AC with point B in the middle, what is the value of BC if AC is equal <br> to " + this.x2 + " and AB is equal to " + this.y1 + " ?</html>";
     } else {
       setAnswer(this.x2 + this.y1);
-     // return "<html>Given the line segment AC with point B in the middle,<br>what is the value of AC if AB is equal to " + this.x2 + " and BC is equal to " + this.y1 + " ?<br><img src=\""
-       //   + Chapter8.class.getResource("images/lineSegment.png")
-         // + "\"></html>";
-      //return new ImageIcon(lineSegment);
-      return "";
+      return "<html>Given the line segment AC with point B in the middle,<br>what is the value of AC if AB is equal to " + this.x2 + " and BC is equal to " + this.y1 + " ?</html>";
     }
   }
 
@@ -84,11 +79,13 @@ public class Chapter8 extends Question { //probably inefficient to initalize all
 
   public String generateVariableAngles() {
     if (this.determiner == 1) {
-      getLabel().setIcon(this.varDiagramObtuse);
-      return ""; //TO-DO
+      this.getLabel().setIcon(this.varDiagramObtuse);
+      getLabel().setIconTextGap(-25);
+      return "test"; //TO-DO
     } else {
       getLabel().setIcon(this.varDiagramAcute);
-      return "";
+      getLabel().setIconTextGap(-25);
+      return "test1";
     }
   }
 }
