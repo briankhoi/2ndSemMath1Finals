@@ -9,7 +9,8 @@ public class Chapter10 extends Question {
   int parallelDistance = (int)(Math.random() * 10 + 1);
   int perpSlope = - 1 / m;
   int perpB = (int)(Math.random() * 10 + 1);
-  int perpXAnswer = 
+  int perpXAnswer = (perpB - b) * (m + perpSlope);
+  int perpYAnswer = m * perpXAnswer + b;
   //Chapter 10.1 asks to identify parallel lines in a 3d structure; skip?
   
   //Chapter 10.2 requires predrawn images.
@@ -34,7 +35,7 @@ public class Chapter10 extends Question {
     }
 
   public String perpendicularProblem(){
-    setAnswer();
-    return "Find the point at which the two perpendicular lines " + generateLinFunction() + generatePerpendicularLinFunction + " intersect. Add the x and y values of the coordinate together and input this as the answer.";
+    setAnswer(perpXAnswer + perpYAnswer);
+    return "Find the point at which the two perpendicular lines " + generateLinFunction() + generatePerpendicularLinFunction() + " intersect. Add the x and y values of the coordinate together and input this as the answer.";
   }
 }
