@@ -9,7 +9,7 @@ public class Chapter6 extends Question {
     while (a == 0 || r == 0 || exDecimal == 0 || constant == 0 || (Math.abs(a) == Math.abs(r)) || (Math.abs(a) == Math.abs(constant) || (Math.abs(r) == Math.abs(constant)))) {
       a = (int) (Math.random() * 10 + 1);
       r = (int) (Math.random() * 5 + 1);
-      exDecimal = Double.valueOf(DFormatter.format(Math.random() * 2 - 1));
+      exDecimal = Double.valueOf(getDFormatter().format(Math.random() * 2 - 1));
       constant = (int) (Math.random() * 10 - 5);
     }
   }

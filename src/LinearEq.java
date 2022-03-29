@@ -21,13 +21,13 @@ public class LinearEq extends Question {
 
         //generates a preset equation based off a randomly generated number and sets the answer variable to the calculated answer based off that equation
         if (num == 1) {
-            setAnswer(Double.parseDouble(DFormatter.format((c - a) / b)));
+            setAnswer(Double.parseDouble(getDFormatter().format((c - a) / b)));
             return a + " + " + b + "x = " + c;
         } else if (num == 2) {
-            setAnswer(Double.parseDouble(DFormatter.format(-b / (a + c))));
+            setAnswer(Double.parseDouble(getDFormatter().format(-b / (a + c))));
             return a + "x + " + b + " + " + c + "x = 0";
         } else if (num == 3) {
-            setAnswer(Double.parseDouble(DFormatter.format((c - a) / (a * b))));
+            setAnswer(Double.parseDouble(getDFormatter().format((c - a) / (a * b))));
             return b + "(" + a + ")x + " + a + " = " + c;
         } else { //just in case a bug happens
             return "An error has occurred. Please email nguyenbriankhoi3238@students.esuhsd.org to report this bug and try again later.";

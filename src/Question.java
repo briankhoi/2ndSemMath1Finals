@@ -15,16 +15,18 @@ public class Question extends JPanel {
     private JPanel panel;
     private JTextField textField;
     private JLabel label;
+    private JLabel imageLabel;
     private double answer; //number answer
     private String explanation; //generated response incase user gets question wrong
-    public DecimalFormat DFormatter = new DecimalFormat("#0.000"); //these two help with converting fraction input to recognized numeric values - idk if we should make them private or not, public for now cause it's easier to test with 
-    public FractionFormat FFormatter = new FractionFormat();
+    private DecimalFormat DFormatter = new DecimalFormat("#0.000"); 
+    private FractionFormat FFormatter = new FractionFormat();
   
     //constructor
     Question() {
       this.panel = new JPanel();
       this.textField = new JTextField();
       this.label = new JLabel();
+      this.imageLabel = new JLabel();
       
       this.textField.setPreferredSize(new Dimension(120,60));
       this.textField.setText("Enter your answer here");
@@ -32,6 +34,7 @@ public class Question extends JPanel {
 
       this.panel.add(this.label);
       this.panel.add(this.textField);
+      this.panel.add(this.imageLabel);
 
       this.panel.setVisible(true);
         //makes it so that when the user clicks on a textfield, the text inside the textfield disappears
@@ -56,12 +59,24 @@ public class Question extends JPanel {
         return this.label;
     }
 
+    public JLabel getImageLabel() {
+      return this.imageLabel;
+    }
+  
     public double getAnswer() {
         return this.answer;
     }
 
     public String getExplanation() {
       return this.explanation;
+    }
+
+    public DecimalFormat getDFormatter() {
+      return this.DFormatter;
+    }
+
+    public FractionFormat getFFormatter() {
+      return this.FFormatter;
     }
 
     //mutator (set) methods for private variables

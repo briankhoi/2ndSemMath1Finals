@@ -1,4 +1,4 @@
-import javax.swing.*;
+ import javax.swing.*;
 import java.awt.*;
 import javax.swing.SwingUtilities;
 import java.awt.event.ActionEvent;
@@ -13,7 +13,8 @@ import java.awt.event.MouseEvent;
 public class App extends JFrame implements ActionListener {
   private JPanel defaultPanel; //panel the user sees when they first launch the program
   private JPanel disclaimerPanel; //panel with the disclaimer message of all the skipped chapters
-  private JPanel startPanel; //panel with the questions
+  private JPanel questionPanel; //panel with the questions
+  private JPanel QPanel1; 
   private JPanel QPanel2;
   private JPanel QPanel3;
   private JPanel QPanel4;
@@ -32,15 +33,15 @@ public class App extends JFrame implements ActionListener {
   private JButton back;
   private JButton next;
   private JButton home;
-  private CardLayout cardSystem;
-  private JPanel cardPanel;
   private ArrayList<Question>Questions;
-  private int currentCard;
+  private JScrollPane scroll;
+
   
   App() {
     defaultPanel = new JPanel();
     disclaimerPanel = new JPanel();
-    startPanel = new JPanel();
+    questionPanel = new JPanel();
+    QPanel1 = new JPanel();
     QPanel2 = new JPanel();
     QPanel3 = new JPanel();
     QPanel4 = new JPanel();
@@ -59,44 +60,44 @@ public class App extends JFrame implements ActionListener {
     Chapter8Msg = new JLabel("Chapter 8: Lines and Angles");
     Chapter10Msg = new JLabel("placeholder");
     Chapter11Msg = new JLabel("placeholder1");
-    
-    currentCard = 1;
-    
-    //card layout system which helps navigate between pages
-    cardSystem = new CardLayout();
-    cardPanel = new JPanel();
-    cardPanel.setLayout(cardSystem);
+    scroll = new JScrollPane(questionPanel);
+    scroll.setPreferredSize(new Dimension(300,300));
+  
     
     //modifying the frame
     this.setDefaultCloseOperation(App.EXIT_ON_CLOSE);
- 
     this.add(defaultPanel);
     this.setTitle("Math 1 2nd Semester Finals Practice App");
-    
-    //modifying the start screen
-    getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+    this.getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+
+    //start screen
     defaultPanel.add(disclaimer);
     defaultPanel.add(start, 0);
     defaultPanel.setVisible(true);
-    pack();
+    //pack();
+
+    //button panel with next, back, and submit buttons
     buttonPanel.add(next);
     buttonPanel.add(back);
     buttonPanel.add(button);
 
+
+    for (int i = 0; i < 5; i++) {
+            generateChapter8();
+            System.out.println("yes");
+          }
     //modifying the question screen
-    startPanel.setLayout(new BoxLayout(startPanel, BoxLayout.Y_AXIS));
-    //startPanel.add(warmupMsg);
-    startPanel.add(home);
-    startPanel.add(buttonPanel);
-    QPanel2.add(buttonPanel);
-    QPanel3.add(buttonPanel);
-    QPanel4.add(buttonPanel);
-    QPanel5.add(buttonPanel);
+    questionPanel.setLayout(new BoxLayout(questionPanel, BoxLayout.Y_AXIS));
+    QPanel1.add(warmupMsg);
+   
     //modifying the disclaimer/skipped chapter screen
     disclaimerPanel.setLayout(new BoxLayout(disclaimerPanel, BoxLayout.Y_AXIS));
     disclaimerPanel.add(disclaimerMessage);
     disclaimerPanel.add(home);
     
+
+
+    //submit button
     button.addActionListener(
       new ActionListener() {
         public void actionPerformed(ActionEvent e) {
@@ -111,23 +112,26 @@ public class App extends JFrame implements ActionListener {
     disclaimer.addActionListener(
       new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-          cardSystem.show(cardPanel, "b");
+          
           System.out.println("pack successful");
           }
         }
     );
 
-    //executes when start button is pressed
+    //starts the generation of questions
     start.addActionListener(
       new ActionListener() {
         public void actionPerformed(ActionEvent e) {
           System.out.println("working start");
           defaultPanel.setVisible(false);
-          startPanel.setVisible(true);
-          for (int i = 0; i < 3; i++) {
-            generateChapter8();
-          }
-          pack();
+        
+         
+          
+          questionPanel.setVisible(true);
+          buttonPanel.setVisible(true);
+          setContentPane(questionPanel);
+
+          //pack();
           }
         }
     );
@@ -138,9 +142,9 @@ public class App extends JFrame implements ActionListener {
         public void actionPerformed(ActionEvent e) {
           System.out.println("working home");
           disclaimerPanel.setVisible(false);
-          startPanel.setVisible(false);
+          questionPanel.setVisible(false);
           defaultPanel.setVisible(true);
-          pack();
+          //pack();
           }
         }
     );
@@ -148,10 +152,7 @@ public class App extends JFrame implements ActionListener {
     next.addActionListener( 
       new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-          if (currentCard < 5) {
-            currentCard += 1;
-            cardSystem.show(cardPanel, "" + (currentCard));
-          }
+        
         }
       }
     );
@@ -159,24 +160,12 @@ public class App extends JFrame implements ActionListener {
     back.addActionListener( 
       new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-          if (currentCard > 1) {
-            currentCard -= 1;
-            cardSystem.show(cardPanel, "" + (currentCard));
-          }
+          
         }
       }
     );
     
 
-    cardPanel.add(defaultPanel, "a");
-    cardPanel.add(disclaimerPanel, "b");
-    cardPanel.add(startPanel, "1");
-    cardPanel.add(QPanel2, "2");
-    cardPanel.add(QPanel3, "3");
-    cardPanel.add(QPanel4, "4");
-    cardPanel.add(QPanel5, "5");
-    getContentPane().add(cardPanel, BorderLayout.NORTH);
-    this.add(cardPanel);
     this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
     this.setVisible(true);
     this.revalidate();
@@ -189,20 +178,21 @@ public class App extends JFrame implements ActionListener {
 
   public void generateChapter1() {
     LinearEq current = new LinearEq();
-    startPanel.add(current.getPanel());
+    QPanel1.add(current.getPanel());
     Questions.add(current);
   }
 
   public void generateChapter8() {
     Chapter8 current = new Chapter8();
-    startPanel.add(current.getPanel());
+    questionPanel.add(current.getPanel());
     Questions.add(current);
     System.out.println("ch8");
+    //this.pack();
   }
 
   public void generateChapter6() {
     expTable current = new expTable();
-    startPanel.add(current.getPanel());
+    QPanel1.add(current.getPanel());
     Questions.add(current);
     System.out.println("ch6");
   }
