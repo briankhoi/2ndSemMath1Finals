@@ -12,31 +12,29 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class Question extends JPanel {
-    private JPanel panel;
     private JTextField textField;
     private JLabel label;
     private JLabel imageLabel;
     private double answer; //number answer
-    private String explanation; //generated response incase user gets question wrong
     private DecimalFormat DFormatter = new DecimalFormat("#0.000"); 
     private FractionFormat FFormatter = new FractionFormat();
   
     //constructor
     Question() {
-      this.panel = new JPanel();
+    
       this.textField = new JTextField();
       this.label = new JLabel();
       this.imageLabel = new JLabel();
       
-      this.textField.setPreferredSize(new Dimension(120,60));
+      this.textField.setPreferredSize(new Dimension(180,60));
       this.textField.setText("Enter your answer here");
       this.label.setPreferredSize(new Dimension(400,180));
 
-      this.panel.add(this.label);
-      this.panel.add(this.textField);
-      this.panel.add(this.imageLabel);
+      this.add(this.label);
+      this.add(this.textField);
+      this.add(this.imageLabel);
 
-      this.panel.setVisible(true);
+      this.setVisible(true);
         //makes it so that when the user clicks on a textfield, the text inside the textfield disappears
       this.textField.addMouseListener(new MouseAdapter(){
           @Override
@@ -47,9 +45,7 @@ public class Question extends JPanel {
     }
 
     //accessor (get) methods for private variables
-    public JPanel getPanel() {
-      return this.panel;
-    }
+    
   
     public JTextField getTextField(){
         return this.textField;
@@ -65,10 +61,6 @@ public class Question extends JPanel {
   
     public double getAnswer() {
         return this.answer;
-    }
-
-    public String getExplanation() {
-      return this.explanation;
     }
 
     public DecimalFormat getDFormatter() {
@@ -87,11 +79,6 @@ public class Question extends JPanel {
     public void setAnswer(double num) {
       this.answer = num;
     }
-
-    public void setExplanation(String str) {
-      this.explanation = str;
-    }
-
 
     public boolean checkAnswer() { //double try catch to take both fraction and numeric inputs
       if (this.textField.getText().equals("")) {

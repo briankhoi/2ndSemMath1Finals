@@ -10,7 +10,7 @@ public class expTable extends Chapter6{
   
   public void makeTable(Object a[][], Object b[]){
     JTable f = new JTable(a, b);
-    getPanel().add(f);
+    this.add(f);
     
   }
   public String generateLinExpTable(){
