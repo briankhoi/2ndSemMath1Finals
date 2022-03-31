@@ -1,20 +1,41 @@
 import javax.swing.*;
 
 public class Chapter10 extends Question {
+  int m = 0;
+  int b = 0;
+  int parallelDistance = 0;
+  int perpSlope = 0;
+  int perpB = 0;
+  int perpXAnswer = 0;
+  int perpYAnswer = 0;
+  int xImageType = 0;
+  int angleA = 0;
+  int xOrY = 0;
   Chapter10() {
     super();
+    int m = (int)(Math.random() * 10 + 1);
+    int b = (int)(Math.random() * 15 + 1);
+    int parallelDistance = (int)(Math.random() * 10 + 1);
+    int perpSlope = - 1 / m;
+    int perpB = (int)(Math.random() * 10 + 1);
+    int perpXAnswer = (perpB - b) * (m + perpSlope);
+    int perpYAnswer = m * perpXAnswer + b;
+    int xImageType = (int)(Math.random() * 2 + 1);
+    int angleA = (int)(Math.random() * 80 + 1);
+    int xOrY = (int)(Math.random() * 2 + 1);
+    problemGen();
   }
-  int m = (int)(Math.random() * 10 + 1);
-  int b = (int)(Math.random() * 15 + 1);
-  int parallelDistance = (int)(Math.random() * 10 + 1);
-  int perpSlope = - 1 / m;
-  int perpB = (int)(Math.random() * 10 + 1);
-  int perpXAnswer = (perpB - b) * (m + perpSlope);
-  int perpYAnswer = m * perpXAnswer + b;
-  int xImageType = (int)(Math.random() * 2 + 1);
-  int angleA = (int)(Math.random() * 80 + 1);
-  int xOrY = (int)(Math.random() * 2 + 1);
-  
+
+  public void problemGen() {
+    int determine = (int) (Math.random() * 3 + 1);
+    if (determine == 1) {
+      this.setLabel(xImageProblem());
+    } else if (determine == 2) {
+      this.setLabel(parallelProblem());
+    } else {
+      this.setLabel(perpendicularProblem());
+    }
+  }
   //Chapter 10.1 asks to identify parallel lines in a 3d structure; skip
   
   //Chapter 10.2 requires predrawn images, find value of x

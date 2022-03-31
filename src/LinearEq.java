@@ -2,6 +2,7 @@
 public class LinearEq extends Question {
     LinearEq() {
       super();
+      this.setLabel(generateProblem1());
     }
     
     public String generateProblem1() {

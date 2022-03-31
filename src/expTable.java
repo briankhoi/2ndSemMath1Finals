@@ -12,6 +12,7 @@ public class expTable extends Chapter6{
     JTable f = new JTable(a, b);
     this.add(f);
     
+    
   }
   public String generateLinExpTable(){
     int linExp = (int)(Math.random() * 2 + 1);

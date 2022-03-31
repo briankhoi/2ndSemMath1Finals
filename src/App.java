@@ -1,4 +1,4 @@
- import javax.swing.*;
+import javax.swing.*;
 import java.awt.*;
 import javax.swing.SwingUtilities;
 import java.awt.event.ActionEvent;
@@ -21,12 +21,15 @@ public class App extends JFrame implements ActionListener {
   private JLabel Chapter8Msg;
   private JLabel Chapter10Msg;
   private JLabel Chapter11Msg;
+  private JLabel scoreLabel;
   private JButton disclaimer;
   private JButton start;
   private JButton button;
   private JButton home;
   private ArrayList<Question>Questions;
   private JScrollPane scroll;
+  private int score;
+  
 
   
   App() {
@@ -44,6 +47,8 @@ public class App extends JFrame implements ActionListener {
     Chapter8Msg = new JLabel("Chapter 8: Lines and Angles");
     Chapter10Msg = new JLabel("placeholder");
     Chapter11Msg = new JLabel("placeholder1");
+    scoreLabel = new JLabel();
+    score = 0;
     scroll = new JScrollPane(questionPanel);
     scroll.setPreferredSize(new Dimension(300,300));
     scroll.getVerticalScrollBar().setUnitIncrement(6);
@@ -87,6 +92,7 @@ public class App extends JFrame implements ActionListener {
     }
     
     questionPanel.add(button);
+    questionPanel.add(scoreLabel);
 
     //submit button
     button.addActionListener(
@@ -94,9 +100,13 @@ public class App extends JFrame implements ActionListener {
         public void actionPerformed(ActionEvent e) {
           for (int i = 0; i < Questions.size(); i++) {
             Questions.get(i).answerUpdater();
-          }
+            if (Questions.get(i).getBackground().equals( Color.GREEN)) {
+              score++;
+            }
+            scoreLabel.setText("" + score);
           }
         }
+      }
     );
 
     //executes when disclaimer/README button is pressed
@@ -105,7 +115,7 @@ public class App extends JFrame implements ActionListener {
         public void actionPerformed(ActionEvent e) {
           defaultPanel.setVisible(false);
           disclaimerPanel.setVisible(true);  
-          System.out.println("pack successful");
+          setContentPane(disclaimerPanel);
           }
         }
     );
@@ -161,6 +171,7 @@ public class App extends JFrame implements ActionListener {
     expTable current = new expTable();
     questionPanel.add(current);
     Questions.add(current);
+    this.pack();
     System.out.println("ch6");
   }
 

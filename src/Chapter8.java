@@ -79,12 +79,12 @@ public class Chapter8 extends Question { //probably inefficient to initalize all
 
   public String generateVariableAngles() {
     if (this.determiner == 1) {
-      this.getLabel().setIcon(this.varDiagramObtuse);
-      getLabel().setIconTextGap(-25);
+          //this.getImageLabel().setIcon(this.varDiagramObtuse);
+      getImageLabel().setText("working");
       return "test"; //TO-DO
     } else {
-      getLabel().setIcon(this.varDiagramAcute);
-      getLabel().setIconTextGap(-25);
+      //getImageLabel().setIcon(this.varDiagramAcute);
+      getImageLabel().setText("working");
       return "test1";
     }
   }

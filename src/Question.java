@@ -21,7 +21,7 @@ public class Question extends JPanel {
   
     //constructor
     Question() {
-    
+      this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
       this.textField = new JTextField();
       this.label = new JLabel();
       this.imageLabel = new JLabel();
@@ -29,10 +29,11 @@ public class Question extends JPanel {
       this.textField.setPreferredSize(new Dimension(180,60));
       this.textField.setText("Enter your answer here");
       this.label.setPreferredSize(new Dimension(400,180));
+      this.imageLabel.setPreferredSize(new Dimension(300,180));
 
       this.add(this.label);
-      this.add(this.textField);
       this.add(this.imageLabel);
+      this.add(this.textField);
 
       this.setVisible(true);
         //makes it so that when the user clicks on a textfield, the text inside the textfield disappears
@@ -92,7 +93,13 @@ public class Question extends JPanel {
           try {
             return this.answer == Double.parseDouble(DFormatter.format(Double.parseDouble(this.textField.getText())));
           } catch (Exception err) {
-              return false;
+              try {
+                //return this.answer == 
+                System.out.println("a");
+                return true;
+              } catch (Exception erro) {
+                return false;
+              }
           }
         }
       }
@@ -100,7 +107,7 @@ public class Question extends JPanel {
 
     public void answerUpdater() {
       if (checkAnswer()) {
-        this.textField.setBackground(Color.GREEN);
+        this.textField.setBackground(new Color(0x77dd77));
       } else {
         this.textField.setBackground(Color.RED);
       }
