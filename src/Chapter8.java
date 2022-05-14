@@ -45,8 +45,7 @@ public class Chapter8 extends Question { //probably inefficient to initalize all
   }
   
   public String generateLineSegment() { 
-    //JLabel picLabel = new JLabel(new ImageIcon(lineSegment));
-//add(picLabel);
+   
     getLabel().setIcon(this.lineSegment);
     if (this.determiner == 1) { 
       setAnswer(this.x2 - this.y1);
@@ -74,18 +73,30 @@ public class Chapter8 extends Question { //probably inefficient to initalize all
 
   public String generateDistanceFormula() {
     setAnswer(Math.sqrt(Math.pow(this.x2 - this.x1, 2) + Math.pow(this.y2 - this.y1, 2)));
-    return "What is the distance between the coordinates " + this.coordinatePoint + " ?";
+    return "What is the distance between the coordinates " + this.coordinatePoint + " ? Round your answer to the nearest whole number.";
   }
 
   public String generateVariableAngles() {
+    int fullDeg = (int) (Math.random() * 30) + 110;
     if (this.determiner == 1) {
-          //this.getImageLabel().setIcon(this.varDiagramObtuse);
-      getImageLabel().setText("working");
-      return "test"; //TO-DO
+      setAnswer((fullDeg - this.x2 - this.y2)/(this.x1 + this.y1));
+        this.getLabel().setIcon(this.varDiagramObtuse);
+        //scaleImage("images/varDiagramObtuse.png", getLabel());
+      return "<html>If angle ABC is equal to " + fullDeg + " degrees and ABD is equal to " + this.x1 + "x + " + this.x2 + ",<br>while CBD is equal to " + this.y1 + "x + " + this.y2 + ", what is the value of angle CBD?</html>";
     } else {
-      //getImageLabel().setIcon(this.varDiagramAcute);
-      getImageLabel().setText("working");
-      return "test1";
+      setAnswer((this.degrees - this.x2 - this.y2)/(this.x1 + this.y1));
+      //scaleImage("images/varDiagramAcute.png", getLabel());
+      this.getLabel().setIcon(this.varDiagramAcute);
+      return "<html>If angle ABC is equal to " + this.degrees + " degrees and ABD is equal to " + this.x1 + "x + " + this.x2 + ",<br>while CBD is equal to " + this.y1 + "x + " + this.y2 + ", what is the value of angle CBD?</html>";
     }
   }
+
+  /*private void scaleImage(String location, JLabel label){
+        ImageIcon icon = new ImageIcon(location);
+        Image img = icon.getImage();
+        Image imgScale = img.getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon scaledIcon = new ImageIcon(imgScale);
+        label.setIcon(scaledIcon);
+
+    }*/
 }

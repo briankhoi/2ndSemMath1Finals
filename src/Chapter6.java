@@ -1,4 +1,6 @@
 //General Chapter 6
+
+
 public class Chapter6 extends Question {
   private int a;
   private int r;
@@ -9,7 +11,7 @@ public class Chapter6 extends Question {
     while (a == 0 || r == 0 || exDecimal == 0 || constant == 0 || (Math.abs(a) == Math.abs(r)) || (Math.abs(a) == Math.abs(constant) || (Math.abs(r) == Math.abs(constant)))) {
       a = (int) (Math.random() * 10 + 1);
       r = (int) (Math.random() * 5 + 1);
-      exDecimal = Double.valueOf(getDFormatter().format(Math.random() * 2 - 1));
+      exDecimal = Double.valueOf(getDFormatter().format(Math.random() * 2 - 1)) * Math.pow(10, 3) / Math.pow(10, 3);
       constant = (int) (Math.random() * 10 - 5);
     }
   }
@@ -30,12 +32,12 @@ public class Chapter6 extends Question {
         return "What is the range of " + generateIncExpEq() + "? Enter 1 for -Infinity to Infinity, 2 for A to Infinity, or 3 for A to zero, where A is a constant.";
       }
     } else {
-      if (domRangDecider == 2){
+      if (domRangDecider == 1){
         setAnswer(1);
         return "What is the domain of " + generateDecExpEq() + "? Enter 1 for -Infinity to Infinity, 2 for A to Infinity, or 3 for A to zero, where A is a constant.";
-      } else {
+      } else if(domRangDecider == 2){
         setAnswer(3);
-        return "What is the domain of " + generateDecExpEq() + "? Enter 1 for -Infinity to Infinity, 2 for A to Infinity, or 3 for A to zero, where A is a constant.";
+        return "What is the range of " + generateDecExpEq() + "? Enter 1 for -Infinity to Infinity, 2 for A to Infinity, or 3 for A to zero, where A is a constant.";
       }
     }
     return "";
@@ -43,17 +45,10 @@ public class Chapter6 extends Question {
   
   //Table of values - just tell user to add ex. f(2) + f(1)?
   public String tableValues() {
-    int xN = (int)(Math.random() * 11 - 5);
-    int xM = (int)(Math.random() * 11 - 5);
-    int incDec = (int)(Math.random() * 2 + 1);
-    if(incDec == 1){
-      setAnswer(getHumanIncExpValue(xM) + getHumanIncExpValue(xN));
-      return "Add the values f(" + xM + ") and f(" + xN + ") of " + generateHumanIncExpEq() + ".";
-      } else {
-      setAnswer(getDecExpValue(xM) + getDecExpValue(xN));
-      return "Add the values f(" + xM + ") and f(" + xN + ") of " + generateDecExpEq() + ".";
-      }
-    
+    int xN = (int)(Math.random() * 6 - 3);
+    int xM = (int)(Math.random() * 6 - 3);
+    setAnswer(getHumanIncExpValue(xM) + getHumanIncExpValue(xN));
+    return "Add the values f(" + xM + ") and f(" + xN + ") of " + generateHumanIncExpEq() + ". Round your answer down to the next lowest whole number.";
     }
 
 
@@ -74,28 +69,30 @@ public class Chapter6 extends Question {
 
 //% Rate of change
   public String generatePercentRateChange() {
-    setAnswer(Math.abs(1 - (this.r + this.exDecimal)) * 100);
-    return "What is the percent(%) rate of change of this exponential equation: " + generateDecExpEq();
+    setAnswer(Math.abs((this.r + this.exDecimal) - 1) * 100);
+    return "What is the percent(%) rate of change of this exponential equation: " + generateRateDecExpEq();
   }
 
 //Chapter 6.3 (tables)
   //generates a human friendly r value exponential equation
   public String generateIncExpEq() {
-    return "f(x) = " + this.a + "^(" + this.r + "x) " + this.constant;
+    return "f(x) = " + this.a + "^(" + this.r + "x) + " + this.constant;
   }
 
   public String generateHumanIncExpEq() {
-    return "f(x) = " + (this.a - 5) + "^(" + (this.r - 2) + "x) " + this.constant;
+    return "f(x) = " + (int)(this.a - 5) + "*" + (int)(this.r) + "^(x) + " +  this.constant;
   }
 
-  public double getHumanIncExpValue(int n) {
-    return (double)((this.a - 5) * (double)Math.pow(this.r - 2, n));
+  public int getHumanIncExpValue(int n) {
+    return (int)((this.a - 5) * (int)Math.pow(this.r, n)) + this.constant;
   }
   //generates a decimal r value exponential equation
   public String generateDecExpEq() {
-    return "f(x) = " + this.a + "^(" + (1 + this.exDecimal) + "x) " + this.constant;
+    return "f(x) = " + this.a + " * " + this.r + "^(" + (1 - this.exDecimal) + "x) + " + this.constant;
   }
-
+  public String generateRateDecExpEq() {
+    return "f(x) = " + this.a + " * " + (this.r + this.exDecimal) + "^(x)";
+  }
   //generates the value of the exponential function y = a^rx at x = n
   public double getIncExpValue(int n){
     return (double)(this.a * (double)Math.pow(this.r, n));
@@ -120,11 +117,11 @@ public class Chapter6 extends Question {
     int c = (int)(Math.random() * 3 + 1);
     String prompt = "Solve for x. ";
       if(formatDeterminer == 1){
-        setAnswer((b / m-1));
+        setAnswer((double)(b / m-1));
         return prompt + this.a + "^x" + " = " + this.a + "^(" +  m + "x + " + b + ")";
       }
       else if(formatDeterminer == 2){
-        setAnswer((-n-b)/m);
+        setAnswer((double)(-n-b)/m);
         return prompt + this.a + "^" + -n + " = " + this.a + "^(" +  m + "x + " + b + ")";
       }
       else if(formatDeterminer == 3){

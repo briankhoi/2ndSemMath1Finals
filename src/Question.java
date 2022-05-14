@@ -18,19 +18,19 @@ public class Question extends JPanel {
     private double answer; //number answer
     private DecimalFormat DFormatter = new DecimalFormat("#0.000"); 
     private FractionFormat FFormatter = new FractionFormat();
+    private static int score;
   
     //constructor
     Question() {
-      this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+      this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
       this.textField = new JTextField();
       this.label = new JLabel();
       this.imageLabel = new JLabel();
-      
-      this.textField.setPreferredSize(new Dimension(180,60));
+      this.imageLabel.setPreferredSize(new Dimension(0,0));
+      this.textField.setPreferredSize(new Dimension(120,60));
       this.textField.setText("Enter your answer here");
-      this.label.setPreferredSize(new Dimension(400,180));
-      this.imageLabel.setPreferredSize(new Dimension(300,180));
-
+      this.label.setPreferredSize(new Dimension(400,300));
+      this.score = 0;
       this.add(this.label);
       this.add(this.imageLabel);
       this.add(this.textField);
@@ -57,11 +57,16 @@ public class Question extends JPanel {
     }
 
     public JLabel getImageLabel() {
+      this.imageLabel.setPreferredSize(new Dimension(300,180));
       return this.imageLabel;
     }
   
     public double getAnswer() {
         return this.answer;
+    }
+
+    public int getScore() {
+      return this.score;
     }
 
     public DecimalFormat getDFormatter() {
@@ -94,9 +99,7 @@ public class Question extends JPanel {
             return this.answer == Double.parseDouble(DFormatter.format(Double.parseDouble(this.textField.getText())));
           } catch (Exception err) {
               try {
-                //return this.answer == 
-                System.out.println("a");
-                return true;
+                return this.answer == Double.parseDouble(this.textField.getText());
               } catch (Exception erro) {
                 return false;
               }
@@ -108,6 +111,7 @@ public class Question extends JPanel {
     public void answerUpdater() {
       if (checkAnswer()) {
         this.textField.setBackground(new Color(0x77dd77));
+        score++;
       } else {
         this.textField.setBackground(Color.RED);
       }

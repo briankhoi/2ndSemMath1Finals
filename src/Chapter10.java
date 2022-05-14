@@ -4,25 +4,29 @@ public class Chapter10 extends Question {
   int m = 0;
   int b = 0;
   int parallelDistance = 0;
-  int perpSlope = 0;
+  double perpSlope = 0;
   int perpB = 0;
-  int perpXAnswer = 0;
-  int perpYAnswer = 0;
+  double perpXAnswer = 0;
+  double perpYAnswer = 0;
   int xImageType = 0;
   int angleA = 0;
   int xOrY = 0;
+  private ImageIcon image1 = new ImageIcon("images/chapter10ImageType1.png");
+  private ImageIcon image2 = new ImageIcon("images/chapter10ImageType2.png");
+
+  
   Chapter10() {
     super();
-    int m = (int)(Math.random() * 10 + 1);
-    int b = (int)(Math.random() * 15 + 1);
-    int parallelDistance = (int)(Math.random() * 10 + 1);
-    int perpSlope = - 1 / m;
-    int perpB = (int)(Math.random() * 10 + 1);
-    int perpXAnswer = (perpB - b) * (m + perpSlope);
-    int perpYAnswer = m * perpXAnswer + b;
-    int xImageType = (int)(Math.random() * 2 + 1);
-    int angleA = (int)(Math.random() * 80 + 1);
-    int xOrY = (int)(Math.random() * 2 + 1);
+    m = (int)(Math.random() * 10 + 1);
+    b = (int)(Math.random() * 15 + 1);
+    parallelDistance = (int)(Math.random() * 10 + 1);
+    perpSlope = (double) -1 / m;
+    perpB = (int)(Math.random() * 10 + 1);
+    perpXAnswer = (perpB - b) * (m + perpSlope);
+    perpYAnswer = m * perpXAnswer + b;
+    xImageType = (int)(Math.random() * 2 + 1);
+    angleA = (int)(Math.random() * 80 + 1);
+    xOrY = (int)(Math.random() * 2 + 1);
     problemGen();
   }
 
@@ -44,20 +48,24 @@ public class Chapter10 extends Question {
       //create image type 1 (#5 on chapter review 10.2)
       if (xOrY == 1){
         setAnswer(180 - angleA);
-        return "Angle A is " + angleA + " degrees. Find the value of x based on this information.";
+        this.getLabel().setIcon(image1);
+        return "<html>Angle A is " + angleA + " degrees.<br>Find the value of x based on this information.</html>";
       }
-      else {
+      else if(xOrY == 2){
         setAnswer(angleA);
-        return "Angle A is " + angleA + " degrees. Find the value of y based on this information.";
+        this.getLabel().setIcon(image1);
+        return "<html>Angle A is " + angleA + " degrees.<br>Find the value of y based on this information.</html>";
       }
     }
     else if (xImageType == 2){
       //create image type 2 (#6 on chapter review 10.2)
       if(xOrY == 1){
         setAnswer(180 - angleA);
+        this.getLabel().setIcon(image2);
         return "Angle A is " + angleA + " degrees. Find the value of y based on this information.";
-      } else {
+      } else if(xOrY == 2){
         setAnswer((angleA - b)/m);
+        this.getLabel().setIcon(image2);
         return "Angle A is " + angleA + " degrees. Angle B is represented by the function " + generateLinFunction() + ". Find the value of x based on this information.";
       }
     }
@@ -80,11 +88,11 @@ public class Chapter10 extends Question {
   
   public String parallelProblem(){
     setAnswer(parallelDistance);
-    return "Find the distance between the parallel lines" + generateLinFunction() + " and " + generateParallelLinFunction() + ".";
+    return "Find the distance between the parallel lines " + generateLinFunction() + " and " + generateParallelLinFunction() + ".";
     }
 
   public String perpendicularProblem(){
     setAnswer(perpXAnswer + perpYAnswer);
-    return "Find the point at which the two perpendicular lines " + generateLinFunction() + generatePerpendicularLinFunction() + " intersect. Add the x and y values of the coordinate together and input this as the answer.";
+    return "Find the point at which the two perpendicular lines " + generateLinFunction() + " and " + generatePerpendicularLinFunction() + " intersect. Add the x and y values of the coordinate together and input this as the answer.";
   }
 }
